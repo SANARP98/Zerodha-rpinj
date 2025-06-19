@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Zerodha Web App</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Zerodha Web App</h1>
+
+        <div>
+            <button onclick="window.location.href='/login'">Login</button>
+            <button onclick="window.location.href='/positions'">Get Positions</button>
+        </div>
+
+        {% if positions %}
+        <h2>Net Positions</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Trading Symbol</th>
+                    <th>Quantity</th>
+                    <th>PnL</th>
+                    <th>Avg. Price</th>
+                    <th>Last Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pos in positions %}
+                <tr>
+                    <td>
+                        {{ pos.tradingsymbol }}
+                        {% if pos.quantity != 0 %}
+                        <form action="/manage/{{ pos.tradingsymbol }}" method="get" style="display:inline;">
+                            <button type="submit">Manage</button>
+                        </form>
+                        {% endif %}
+                    </td>
+                    <td class="{% if pos.quantity > 0 %}positive{% elif pos.quantity < 0 %}negative{% endif %}">
+                        {{ pos.quantity }}
+                    </td>
+                    <td class="{% if pos.pnl > 0 %}positive{% elif pos.pnl < 0 %}negative{% endif %}">
+                        {{ pos.pnl }}
+                    </td>
+                    <td>{{ pos.average_price }}</td>
+                    <td>{{ pos.last_price }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+    </div>
+</body>
+</html>

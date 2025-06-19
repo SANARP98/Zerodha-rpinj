@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Position</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="container">
+    <h2>Manage: {{ position.tradingsymbol }}</h2>
+
+    <table>
+        <tr>
+            <th>Quantity</th>
+            <th>PnL</th>
+            <th>Avg. Price</th>
+            <th>Last Price</th>
+        </tr>
+        <tr>
+            <td>{{ position.quantity }}</td>
+            <td class="{% if position.pnl > 0 %}positive{% elif position.pnl < 0 %}negative{% endif %}">{{ position.pnl }}</td>
+            <td>{{ position.average_price }}</td>
+            <td>{{ position.last_price }}</td>
+        </tr>
+    </table>
+
+    <h3>Available Actions</h3>
+    <form action="/action" method="post">
+        <input type="hidden" name="symbol" value="{{ position.tradingsymbol }}">
+        <button type="submit" name="action" value="log">Log Info</button>
+        <button type="submit" name="action" value="close">Close Position</button>
+        <button type="submit" name="action" value="alert">Send Alert</button>
+    </form>
+
+    <br>
+    <a href="/positions">← Back to Positions</a>
+</div>
+</body>
+</html>
