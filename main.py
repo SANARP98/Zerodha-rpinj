@@ -1,0 +1,1 @@
+print("Hail Success and Glory to God")
