@@ -7,12 +7,22 @@
 </head>
 <body>
     <div class="container">
-        <h1>Zerodha Web App</h1>
+        <h1>
+            Zerodha Web App
+            <span class="status-dot {{ 'logged-in' if logged_in else 'logged-out' }}"></span>
+        </h1>
 
         <div>
             <button onclick="window.location.href='/login'">Login</button>
             <button onclick="window.location.href='/positions'">Get Positions</button>
         </div>
+
+        {% if access_token %}
+        <div class="token-box">
+            <strong>Request Token:</strong> {{ request_token }}<br>
+            <strong>Access Token:</strong> {{ access_token }}
+        </div>
+        {% endif %}
 
         {% if positions %}
         <h2>Net Positions</h2>

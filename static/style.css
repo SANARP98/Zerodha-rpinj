@@ -63,3 +63,27 @@ tr:hover {
     color: red;
     font-weight: bold;
 }
+.status-dot {
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+.logged-in {
+    background-color: green;
+}
+
+.logged-out {
+    background-color: red;
+}
+
+.token-box {
+    margin-top: 10px;
+    padding: 10px;
+    background: #e9ecef;
+    border-left: 5px solid #adb5bd;
+    font-family: monospace;
+}

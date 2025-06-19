@@ -5,27 +5,41 @@ from fastapi.staticfiles import StaticFiles
 from login_logic import get_login_url, generate_session
 from positions import fetch_net_positions
 from logger_config import setup_logger
+import os
 
 app = FastAPI()
 logger = setup_logger(__name__)
 templates = Jinja2Templates(directory="templates")
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
+def get_token_status():
+    request_token = os.getenv("REQUEST_TOKEN")
+    access_token = os.getenv("ACCESS_TOKEN")
+    return request_token, access_token, bool(access_token)
+
 @app.get("/", response_class=HTMLResponse)
 async def index(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
+    request_token, access_token, logged_in = get_token_status()
+    return templates.TemplateResponse("index.html", {
+        "request": request,
+        "logged_in": logged_in,
+        "request_token": request_token,
+        "access_token": access_token
+    })
+
+@app.get("/callback")
+def callback(request_token: str):
+    try:
+        access_token = generate_session(request_token)
+        return RedirectResponse("/", status_code=303)
+    except Exception as e:
+        return HTMLResponse(f"<h3>Error: {e}</h3><a href='/'>Back</a>")
 
 @app.get("/login")
 def login():
     return RedirectResponse(get_login_url())
 
-@app.get("/callback")
-def callback(request_token: str):
-    try:
-        generate_session(request_token)
-        return HTMLResponse("<h3>Login successful!</h3><a href='/'>Back</a>")
-    except Exception as e:
-        return HTMLResponse(f"<h3>Error: {e}</h3><a href='/'>Back</a>")
+
 
 @app.get("/positions", response_class=HTMLResponse)
 def show_positions(request: Request):
