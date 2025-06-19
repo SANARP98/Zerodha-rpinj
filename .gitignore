@@ -1,1 +1,4 @@
 Zerodha-RPINJ.code-workspace
+.env
+.venv
+logs
