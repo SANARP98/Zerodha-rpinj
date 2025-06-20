@@ -1,68 +1,132 @@
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f6f8;
+/* Reset defaults and ensure consistent box-sizing */
+* {
     margin: 0;
-    padding: 20px;
-    color: #333;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+/* Modern body styles with dark theme */
+body {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, #1e1e2f, #2a2a3b);
+    color: #e0e0e0;
+    padding: 24px;
+    line-height: 1.6;
+    font-size: 16px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* Headings with bold, modern typography */
 h1 {
-    color: #2c3e50;
+    color: #ffffff;
     text-align: center;
+    font-size: 2.25rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.015em;
 }
 
+h2 {
+    color: #ffffff;
+    font-size: 1.75rem;
+    font-weight: 500;
+    margin: 1.25rem 0;
+}
+
+/* Glassmorphism container with blur effect */
+.container {
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
+    background: rgba(30, 30, 47, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 32px;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Modern button styles with vibrant hover effects */
 button {
-    background-color: #3498db;
-    color: white;
-    padding: 10px 20px;
-    margin: 10px 10px 20px 0;
+    background: linear-gradient(90deg, #6b48ff, #00ddeb);
+    color: #ffffff;
+    padding: 12px 24px;
+    margin: 8px 8px 16px 0;
     border: none;
-    border-radius: 5px;
+    border-radius: 12px;
     cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 15px rgba(107, 72, 255, 0.3);
 }
 
 button:hover {
-    background-color: #2980b9;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(107, 72, 255, 0.5);
 }
 
+button:active {
+    transform: translateY(0);
+}
+
+/* Table with modern, minimal design */
 table {
     width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    background-color: white;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-th, td {
-    padding: 12px 16px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
+/* Table headers with gradient background */
 th {
-    background-color: #2c3e50;
-    color: white;
+    background: linear-gradient(90deg, #2a2a3b, #3b3b4b);
+    color: #ffffff;
+    padding: 16px;
+    text-align: left;
+    font-weight: 500;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+/* Table cells with smooth transitions */
+td {
+    padding: 16px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 0.95rem;
+    transition: background-color 0.3s ease;
+}
+
+tr:last-child td {
+    border-bottom: none;
 }
 
 tr:hover {
-    background-color: #f1f1f1;
+    background-color: rgba(255, 255, 255, 0.03);
 }
 
-.container {
-    max-width: 900px;
-    margin: auto;
-}
+/* Positive and negative value styles */
 .positive {
-    color: green;
-    font-weight: bold;
+    color: #00ff88;
+    font-weight: 600;
 }
 
 .negative {
-    color: red;
-    font-weight: bold;
+    color: #ff4d4d;
+    font-weight: 600;
 }
+
+/* Status dot with glow effect */
 .status-dot {
     height: 12px;
     width: 12px;
@@ -70,20 +134,77 @@ tr:hover {
     display: inline-block;
     margin-left: 10px;
     vertical-align: middle;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
 }
 
 .logged-in {
-    background-color: green;
+    background-color: #00ff88;
 }
 
 .logged-out {
-    background-color: red;
+    background-color: #ff4d4d;
 }
 
+/* Token box with glassmorphism */
 .token-box {
-    margin-top: 10px;
-    padding: 10px;
-    background: #e9ecef;
-    border-left: 5px solid #adb5bd;
-    font-family: monospace;
+    margin-top: 16px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.9rem;
+    color: #d0d0d0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Link styles with subtle hover */
+a {
+    color: #6b48ff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #00ddeb;
+}
+
+/* Inline form styles */
+form {
+    display: inline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    body {
+        padding: 16px;
+    }
+
+    .container {
+        padding: 24px;
+    }
+
+    h1 {
+        font-size: 1.75rem;
+    }
+
+    h2 {
+        font-size: 1.25rem;
+    }
+
+    table {
+        font-size: 0.85rem;
+    }
+
+    th, td {
+        padding: 12px;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
 }
